@@ -71,7 +71,8 @@ text-align: center;
 <% } %>
 </table>
 
-<a href ="movieinsertion.jsp" class="link">Add Movie</a>
+<a href ="movieinsertion.jsp" class="link" >Add Movie</a> <br>
+<a href ="logout" class="link">Log Out</a>
 
 </body>
 </html>

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import daoclasses.MovieDao;
 @WebServlet("/deletemovie")
@@ -25,10 +26,21 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 	
 	try {
 		
-		dao.deleteMovie(id);
-		req.setAttribute("movies", dao.getAllMovies());
-		RequestDispatcher rd = req.getRequestDispatcher("admininterface.jsp");
-		rd.include(req, resp);
+		HttpSession session = req.getSession();
+		String adminname = (String) session.getAttribute("adminname");
+		if(adminname!=null)
+		{
+			dao.deleteMovie(id);
+			req.setAttribute("movies", dao.getAllMovies());
+			RequestDispatcher rd = req.getRequestDispatcher("admininterface.jsp");
+			rd.include(req, resp);
+		}
+		else
+		{
+			req.setAttribute("message", "Access Denied Admin Login Required");
+			RequestDispatcher rd = req.getRequestDispatcher("adminsignin.jsp");
+			rd.include(req, resp);
+		}
 		
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block

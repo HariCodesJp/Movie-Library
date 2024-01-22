@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import daoclasses.MovieDao;
 import dtoclasses.MovieDto;
@@ -27,10 +28,23 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 	 
 	 try {
 		 
-		MovieDto m = dao.findMovieById(id);
-		req.setAttribute("movies", m);
-		RequestDispatcher rd = req.getRequestDispatcher("movieedit.jsp");
-		rd.include(req, resp);
+		 HttpSession session = req.getSession();
+		 String adminname = (String) session.getAttribute("adminname");
+		 if(adminname!=null)
+		 {
+			 MovieDto m = dao.findMovieById(id);
+				req.setAttribute("movies", m);
+				RequestDispatcher rd = req.getRequestDispatcher("movieedit.jsp");
+				rd.include(req, resp); 
+		 }
+		 else
+			 
+		 {
+			 req.setAttribute("message", "Access Denied Admin Login Required");
+				RequestDispatcher rd = req.getRequestDispatcher("adminsignin.jsp");
+				rd.include(req, resp);
+		 }
+		
 		
 		
 	} catch (ClassNotFoundException e) {
