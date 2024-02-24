@@ -25,7 +25,7 @@ public class MovieDao
 		}
 		
 		
-//To Save movie deatils into database
+//To Save movie details into database
 		
 		public int saveMovie(MovieDto movie) throws ClassNotFoundException, SQLException
 		{
@@ -86,10 +86,7 @@ public class MovieDao
 			
 			Connection conn = getConnection();
 			PreparedStatement pst = conn.prepareStatement("delete from movietable where movieid =?");
-			
-	
-			
-			 pst.setInt(1,id);
+			pst.setInt(1,id);
 			return pst.executeUpdate();
 	
 			
@@ -142,5 +139,44 @@ public class MovieDao
 			
 		}
 		
+		public boolean buyMovie(int movieId,int userId) throws ClassNotFoundException, SQLException
+		{
+			Connection conn = getConnection();
+			PreparedStatement pst = conn.prepareStatement("INSERT INTO purchases (userid, movieid, moviename, moviebudget, movierating, moviegenre,movielanguage,purchase_date) SELECT ?, movieid, moviename, moviebudget, movierating, moviegenre,movielanguage, NOW() FROM movietable WHERE movieid = ?");
+			
+			pst.setInt(1, userId);
+			pst.setInt(2, movieId);
+			int rowsUpdated = pst.executeUpdate();
+			
+			return rowsUpdated > 0;
+			
+		}
+		
+		public List<MovieDto> purchasedMovies(int movieId) throws ClassNotFoundException, SQLException
+		{
+			Connection conn = getConnection();
+			PreparedStatement pst = conn.prepareStatement("select * from purchases where purchaseid = ?");
+			List<MovieDto> dto = new ArrayList<>();
+			pst.setInt(1, movieId);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				MovieDto m = new MovieDto();
+				m.setMovieId(rs.getInt(1));
+				m.setMovieName(rs.getString(2));
+				m.setMovieBudget(rs.getDouble(3));
+				m.setMovieRating(rs.getDouble(4));
+				m.setMovieGenre(rs.getString(5));
+				m.setMovieLangugae(rs.getString(6));
+//				pst.setString(5, m.getMovieLangugae());
+//				Blob image = new SerialBlob(m.getMovieImage());
+//				pst.setBlob(6, image);
+//				
+				dto.add(m);
+			}
+			
+			return dto;
+			
+		}
 }
 

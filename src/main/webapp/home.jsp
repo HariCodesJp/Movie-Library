@@ -1,108 +1,124 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-<style>
-
-h1
+    
+    *
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }
+    body
+    {
+        background-color: rgba(12,3,51,0.3);
+ 
+    }
+    button
+    {
+        font-family: Outfit;
+        padding: 8px 30px;
+    }
+    /* .main
+    {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(rgba(12,3,51,0.3)) ;
+        position: relative;
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    } */
+.main
 {
-text-align: center;
-color: white;
-font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
 }
-#center
+.main h1
 {
-text-align: center;
-
-
+   margin-top: 300px;
+   margin-right: 20px;
+    font-family: Outfit;
+    font-size:80px;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.5s;
 }
-#link1
+.main h1:hover
 {
-/* border: 1px solid black;
-border-radius: 3px;
-padding: 5px;
-line-height: 10px;
-color: black; */
+   -webkit-text-stroke: 2px #fff; 
+   color: transparent;
+   cursor: pointer;
 }
-#link2
+.main button
 {
-/* border: 1px solid black;
-border-radius: 3px;
-padding: 5px;
-color: black; */
-
-
+    
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    border-color: transparent;
+    border-radius: 50px;
+    margin-top: 20px;
+    background-color: black;
 }
-
-button
+.main button:hover
 {
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-padding: 9px 20px;
-border-radius: 9px;
-color: white;
-background-color: black;
-font-size: large;
-
+    background-color: #fff;
+    color: black;
+    border-color: transparent;
+    cursor: pointer;
 }
-button:hover
+.back-video
 {
-background-color: rgb(162, 231, 219);
-color: white;
-box-shadow: rgb(172, 243, 234) 0px 7px 29px 0px;
-cursor: pointer;
-}
-button:active
-{
-
-background-color: rgb(148, 232, 217);
-color: white;
-box-shadow: rgb(64, 238, 221) 0px 7px 29px 0px;
-transform: translateY(1px);
-}
-img
-{
-  background-image:url("3526954.jpg");
     position: absolute;
+    right: 0;
+    bottom: 0;
     z-index: -1;
-    object-fit: cover;
-    filter: blur(5px);
-    height: 100vh;
-    width: 100vw;
-    background-position: center;
-    background-size: cover;
-
 }
-div
+@media(min-aspect-ratio: 16/9)
 {
-position: absolute;
-background-position: center;
-margin-top: 310px;
-margin-left: 685px;
-
-
+    .back-video
+    {
+        width: 100%;
+        height: auto;
+    }
 }
-body
+@media(max-aspect-ratio: 16/9)
 {
-    height: 100vh;
+    .back-video
+    {
+        width: auto;
+        height: 100%;
+    }
 }
-</style>
-
+    </style>
 </head>
 
 <body>
+   <div class="videotag">
+    <video autoplay muted loop plays-inline class="back-video">
+        <source src="Y2meta.app-Miles Morales Spiderman 4k Live Wallpaper _ Spiderman into the spiderverse _ Marvel.-(1080p60).mp4" type="video/mp4">
+    </video>
+   </div>
+    <div class="main">
 
-<img alt="" src="3526954.jpg">
+        <h1>Hello Welcome To Movie Library</h1>
 
 
-<div id ="center">
-
-<a href="userhome.jsp"><button>User</button></a>
-<a href="adminhome.jsp"><button>Admin</button></a>
+    <a href="userhome.jsp"><button><i class="fa-solid fa-user"></i> USER</button></a>
+    <a href="adminhome.jsp">
+    <button><i class="fa-solid fa-user-tie"></i> ADMIN</button></a>
 
 </div>
 
+    <script src="https://kit.fontawesome.com/f970853ef3.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -224,7 +224,7 @@ form input[type="submit"] {
             <input type="checkbox" id="signupCheck" />
             <label for="signupCheck"> I accept all terms & conditions</label>
           </div>
-          <input type="Submit" value="Signup" />
+          <input type="Submit" value="Signup"/>
         </form>
       </div>
    </section>

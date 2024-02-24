@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import daoclasses.MovieDao;
 import daoclasses.UserDao;
 import dtoclasses.UserDto;
 
@@ -24,15 +26,17 @@ public class UserLoginVerification extends HttpServlet
 		String password = req.getParameter("userpassword");
 		
 		UserDao dao = new UserDao();
+		MovieDao mDao = new MovieDao();
 		
 		try {
-			
 			
 			UserDto user = dao.findUserEmail(email);
 			if(user!=null)
 			{
 				if(user.getUserPassword().equals(password))
 				{
+					HttpSession session = req.getSession();
+					session.setAttribute("movies", mDao.getAllMovies());
 					RequestDispatcher rd = req.getRequestDispatcher("userinterface.jsp");
 					rd.include(req, resp);
 				}

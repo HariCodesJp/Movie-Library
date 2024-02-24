@@ -12,6 +12,7 @@ public class MovieDto
 	private String movieGenre;
 	private String movieLangugae;
 	private byte[] movieImage;
+	private boolean moviePurchase;
 	
 	public byte[] getMovieImage() {
 		return movieImage;
@@ -55,11 +56,19 @@ public class MovieDto
 	public void setMovieLangugae(String movieLangugae) {
 		this.movieLangugae = movieLangugae;
 	}
+	
+	public boolean isMoviePurchase() {
+		return moviePurchase;
+	}
+	public void setMoviePurchase(boolean moviePurchase) {
+		this.moviePurchase = moviePurchase;
+	}
+	
 	@Override
 	public String toString() {
 		return "MovieDto [movieId=" + movieId + ", movieName=" + movieName + ", movieBudget=" + movieBudget
 				+ ", movieRating=" + movieRating + ", movieGenre=" + movieGenre + ", movieLangugae=" + movieLangugae
-				+ ", movieImage=" + Arrays.toString(movieImage) + "]";
+				+ ", movieImage=" + Arrays.toString(movieImage) + ", moviePurchase=" + moviePurchase + "]";
 	}
 	
 	
